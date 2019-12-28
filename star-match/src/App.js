@@ -10,7 +10,7 @@ function App() {
 const StarMatch = () => {
   const [stars, setStars] = useState(utils.random(1,9));
   const [availableNums, setAvailableNums] = useState([1,2,3,4,5]);
-  const [candidateNums, setCandidateNums] = useState([]);
+  const [candidateNums, setCandidateNums] = useState([2,3]);
 
   const candidateAreWrong = utils.sum(candidateNums) > stars;
 
@@ -19,7 +19,7 @@ const StarMatch = () => {
       return 'used';
     }
     if (candidateNums.includes(number)) {
-      return candidateAreWrong ? 'wrong' : 'candidate';
+      return candidateAreWrong ? 'wrong' : 'condidate';
     }
     return 'available';
   }
@@ -56,7 +56,11 @@ const StarsDisplay = props => (
 );
 
 const PlayNumber = props => (
-<button className="number" onClick={() => console.log('Num', props.number)}>
+<button 
+  className="number" 
+  style={{backgroundColor: colors[props.status] }}
+  onClick={() => console.log('Num', props.number)}
+  >
   {props.number}
 </button>
 );
@@ -64,7 +68,7 @@ const PlayNumber = props => (
 const colors = {
   available: 'lightgray',
   used: 'lightgreen',
-  wrong: 'lightcoreal',
+  wrong: 'lightcoral',
   condidate: 'deepskyblue',
 };
 
