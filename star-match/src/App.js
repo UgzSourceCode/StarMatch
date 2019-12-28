@@ -22,7 +22,7 @@ const StarMatch = () => {
         </div>
         <div className="right">
           {utils.range(1,9).map(number => 
-            <button key={number} className="number">{number}</button>
+            <PlayNumber key={number} number={number} />
           )}
         </div>
       </div>
@@ -30,6 +30,12 @@ const StarMatch = () => {
     </div>
   );
 };
+
+const PlayNumber = props => (
+<button className="number" onClick={() => console.log('Num', props.number)}>
+  {props.number}
+</button>
+);
 
 const colors = {
   available: 'lightgray',
