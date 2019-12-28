@@ -23,6 +23,7 @@ const StarMatch = () => {
           <div className="star" />
           <div className="star" />
           <div className="star" />
+          <div className="star" />
         </div>
         <div className="right">
           <button className="number">1</button>
