@@ -7,7 +7,7 @@ function App() {
   );
 }
 
-const StarMatch = () => {
+const Game = (props) => {
   const [stars, setStars] = useState(utils.random(1,9));
   const [availableNums, setAvailableNums] = useState(utils.range(1,9));
   const [candidateNums, setCandidateNums] = useState([]);
@@ -28,12 +28,6 @@ const StarMatch = () => {
   const gameStatus = availableNums.length === 0 
     ? 'won'
     : secondLeft === 0 ? 'lost' : 'active';
-
-  const resetGame = () => {
-    setStars(utils.random(1,9));
-    setAvailableNums(utils.range(1,9));
-    setCandidateNums([]);
-  }
 
   const numnberStatus = (number) => {
     if (!availableNums.includes(number)) {
@@ -77,7 +71,7 @@ const StarMatch = () => {
       <div className="body">
         <div className="left">
           {gameStatus !== 'active' ? (
-            <PlayAgain onClick={resetGame} gameStatus={gameStatus}/>
+            <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus}/>
           ) : (
             <StarsDisplay count={stars} />
           )}
@@ -97,6 +91,14 @@ const StarMatch = () => {
     </div>
   );
 };
+
+const StarMatch = () => {
+  const [gameId, setGemaeId] = useState(1);
+  return <Game key={gameId} startNewGame={() => {
+    setGemaeId(gameId + 1);
+    console.log("gameId is " + gameId)
+  }} />
+}
 
 const StarsDisplay = props => (
   <>
